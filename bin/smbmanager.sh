@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   Samba Server Management
+# @brief   Samba Server Manager
 # @version ver.1.0
 # @date    Mon Jun 02 13:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
@@ -18,28 +18,30 @@ UTIL_LOG=$UTIL/log
 . $UTIL/bin/usage.sh
 . $UTIL/bin/devel.sh
 
-TOOL_NAME=smbmanager
-TOOL_VERSION=ver.1.0
-TOOL_HOME=$UTIL_ROOT/$TOOL_NAME/$TOOL_VERSION
-TOOL_CFG=$TOOL_HOME/conf/$TOOL_NAME.cfg
-TOOL_LOG=$TOOL_HOME/log
+SMBMANAGER_TOOL=smbmanager
+SMBMANAGER_VERSION=ver.1.0
+SMBMANAGER_HOME=$UTIL_ROOT/$SMBMANAGER_TOOL/$SMBMANAGER_VERSION
+SMBMANAGER_CFG=$SMBMANAGER_HOME/conf/$SMBMANAGER_TOOL.cfg
+SMBMANAGER_LOG=$SMBMANAGER_HOME/log
 
 declare -A SMBMANAGER_USAGE=(
-	[TOOL_NAME]="__$TOOL_NAME"
+	[TOOL_NAME]="__$SMBMANAGER_TOOL"
 	[ARG1]="[PROCESS]   smb | nmb | winbind | all"
 	[ARG2]="[OPERATION] start | stop | restart | status | version"
 	[EX-PRE]="# Restart smb service"
-	[EX]="__$TOOL_NAME smb restart"	
+	[EX]="__$SMBMANAGER_TOOL smb restart"
 )
 
 declare -A LOG=(
-	[TOOL]="$TOOL_NAME"
+	[TOOL]="$SMBMANAGER_TOOL"
 	[FLAG]="info"
-	[PATH]="$TOOL_LOG"
+	[PATH]="$SMBMANAGER_LOG"
 	[MSG]=""
 )
 
-SYSTEMCTL="/usr/bin/systemctl"
+TOOL_DBG="false"
+
+SYSTEMCTL_PATH="/usr/bin/systemctl"
 PDBEDIT="/usr/bin/pdbedit"
 SMBSTATUS="/usr/bin/smbstatus"
 SMBD="/usr/sbin/smbd"
@@ -55,20 +57,27 @@ SMB_OP_LIST=( start stop restart status version )
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __smbversion 
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __smbversion() {
+	local FUNC=${FUNCNAME[0]}
+	local MSG=""
 	__checktool "$SMBD"
-	STATUS=$?
+	local STATUS=$?
 	if [ "$STATUS" -eq "$SUCCESS" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "CMD: $SMBD -V"
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Version of samba server"
+			printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 		fi
 		eval "$SMBD -V"
 		return $SUCCESS
@@ -84,26 +93,32 @@ function __smbversion() {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __smbinfo 
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __smbinfo() {
+	local FUNC=${FUNCNAME[0]}
+	local MSG=""
     __checktool "$SMBSTATUS"
-    STATUS=$?
+    local STATUS=$?
     if [ "$STATUS" -eq "$SUCCESS" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "CMD: $SMBSTATUS -v"
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Get samba info"
+			printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 		fi
         eval "$SMBSTATUS -v"
         return $SUCCESS
-    else 
-        return $NOT_SUCCESS
-    fi
+    fi 
+	return $NOT_SUCCESS
 }
 
 #
@@ -114,55 +129,68 @@ function __smbinfo() {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __smblist
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __smblist() {
+	local FUNC=${FUNCNAME[0]}
+	local MSG=""
     __checktool "$PDBEDIT"
-    STATUS=$?
+    local STATUS=$?
     if [ "$STATUS" -eq "$SUCCESS" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "CMD: $PDBEDIT -L -v"
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="List samba"
+			printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 		fi
         eval "$PDBEDIT -L -v"
         return $SUCCESS
-    else 
-        return $NOT_SUCCESS
-    fi
+    fi 
+	return $NOT_SUCCESS
 }
 
 #
 # @brief  Run operation with smb service
-# @param  Value required operation to be done
+# @parm   Value required cmd (start | stop | restart | status)
 # @retval Success return 0, else return 1
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __smboperation "$OPERATION"
-# STATUS=$?
+# __smboperation $OPERATION
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __smboperation() {
-    OPERATION=$1
+    local OPERATION=$1
     if [ -n "$OPERATION" ]; then
-		__checktool "$SYSTEMCTL"
-    	STATUS=$?
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		__checktool "$SYSTEMCTL_PATH"
+    	local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "CMD: $SYSTEMCTL $OPERATION smb.service"
+			if [ "$TOOL_DBG" == "true" ]; then
+				MSG="smb service [$OPERATION]"
+				printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 			fi
-		    eval "$SYSTEMCTL $OPERATION smb.service"
+		    eval "$SYSTEMCTL_PATH $OPERATION smb.service"
 		    return $SUCCESS 
 		fi
 		return $NOT_SUCCESS
@@ -172,31 +200,38 @@ function __smboperation() {
 
 #
 # @brief  Run operation with nmb service
-# @param  Value required operation to be done
+# @parm   Value required cmd (start | stop | restart | status)
 # @retval Success return 0, else return 1
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __nmboperation "$OPERATION"
-# STATUS=$?
+# __nmboperation $OPERATION
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __nmboperation() {
-    OPERATION=$1
+    local OPERATION=$1
     if [ -n "$OPERATION" ]; then
-		__checktool "$SYSTEMCTL"
-    	STATUS=$?
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		__checktool "$SYSTEMCTL_PATH"
+    	local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "CMD: $SYSTEMCTL $OPERATION nmb.service"
+			if [ "$TOOL_DBG" == "true" ]; then
+				MSG="nmb service [$OPERATION]"
+				printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 			fi
-		    eval "$SYSTEMCTL $OPERATION nmb.service"
+		    eval "$SYSTEMCTL_PATH $OPERATION nmb.service"
 		    return $SUCCESS 
 		fi
 		return $NOT_SUCCESS
@@ -206,31 +241,38 @@ function __nmboperation() {
 
 #
 # @brief  Run operation with winbind service
-# @param  Value required operation to be done
+# @parm   Value required cmd (start | stop | restart | status)
 # @retval Success return 0, else return 1 
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __winbindoperation "$OPERATION"
-# STATUS=$?
+# __winbindoperation $OPERATION
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __winbindoperation() {
-    OPERATION=$1
+    local OPERATION=$1
     if [ -n "$OPERATION" ]; then
-		__checktool "$SYSTEMCTL"
-    	STATUS=$?
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		__checktool "$SYSTEMCTL_PATH"
+    	local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "CMD: $SYSTEMCTL $OPERATION winbind.service"
+			if [ "$TOOL_DBG" == "true" ]; then
+				MSG="winbind service [$OPERATION]"
+				printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 			fi
-		    eval "$SYSTEMCTL $OPERATION winbind.service"
+		    eval "$SYSTEMCTL_PATH $OPERATION winbind.service"
 		    return $SUCCESS 
 		fi
 		return $NOT_SUCCESS
@@ -239,8 +281,12 @@ function __winbindoperation() {
 }
 
 #
-# @brief  Main function 
-# @params Values required process name and operation
+# @brief   Main function 
+# @params  Values required process name and operation
+# @exitval Function __smbmanger exit with integer value
+#			0   - success operation 
+#			128 - missing argument(s)
+#			129 - wrong second argument
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -248,67 +294,52 @@ function __winbindoperation() {
 # __smbmanager "$PROCESS" "$OPERATION"
 #
 function __smbmanager() {
-    PROCESS=$1
-    OPERATION=$2
+    local PROCESS=$1
+    local OPERATION=$2
     if [ -n "$PROCESS" ] && [ -n "$OPERATION" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[Samba Server Manager]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Samba Server Manager"
+			printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
 		fi
         __checkop "$OPERATION" "${SMB_OP_LIST[*]}"
-        STATUS=$?
+        local STATUS=$?
         if [ "$STATUS" -eq "$SUCCESS" ]; then
             case "$PROCESS" in
-                "smb") 		
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "$OPERATION smb service"
-                    fi
-                    __smboperation "$OPERATION"
-                    ;;
-                "nmb")	    
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "$OPERATION nmb service"
-                    fi
-                    __nmboperation "$OPERATION"
-                    ;;
-                "winbind")	
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "$OPERATION winbind service"
-                    fi
-                    __winbindoperation "$OPERATION" 
-                    ;;
-                "all") 		
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "$OPERATION all samba service"
-                    fi
-                    __nmboperation "$OPERATION"
-                    __smboperation "$OPERATION"
-                    __winbindoperation "$OPERATION"
-                    ;;
-                "info")		
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "Get samba info"
-                    fi
-                    __smbinfo
-                    ;;
-                "list")     
-                    if [ "$TOOL_DEBUG" == "true" ]; then
-                    	printf "%\n" "List samba"
-                    fi
-                    __smblist
-					;;
+                "smb")
+		                    __smboperation $OPERATION
+		                    ;;
+                "nmb")
+		                    __nmboperation $OPERATION
+		                    ;;
+                "winbind")
+		                    __winbindoperation $OPERATION 
+		                    ;;
+                "all")
+		                    if [ "$TOOL_DBG" == "true" ]; then
+		                    	MSG="All samba service [$OPERATION]"
+								printf "$DSTA" "$SMBMANAGER_TOOL" "$FUNC" "$MSG"
+		                    fi
+		                    __nmboperation $OPERATION
+		                    __smboperation $OPERATION
+		                    __winbindoperation $OPERATION
+		                    ;;
+                "info")
+		                    __smbinfo
+		                    ;;
+                "list")
+		                    __smblist
+							;;
 				"version")
-					if [ "$TOOL_DEBUG" == "true" ]; then
-						printf "%s\n" "Version of samba server"
-					fi
-					__smbversion
-					;;
+							__smbversion
+							;;
             esac
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n\n" "[Done]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DEND" "$SMBMANAGER_TOOL" "$FUNC" "Done"
 			fi
 			exit 0 
         fi
-		__usage $SMBMANAGER_USAGE
 		exit 129
     fi 
 	__usage $SMBMANAGER_USAGE
@@ -317,19 +348,18 @@ function __smbmanager() {
 
 #
 # @brief   Main entry point
-# @params  Values required process and operation
-# @exitval Script tool atmanger exit with integer value
+# @params  Value required process and operation
+# @exitval Script tool smbmanger exit with integer value
 #			0   - success operation 
 # 			127 - run as root user
-#			128 - missing argument
-#			129 - wrong argument (operation)
+#			128 - missing argument(s)
+#			129 - wrong second argument
 #
-printf "\n%s\n%s\n\n" "$TOOL_NAME $TOOL_VERSION" "`date`"
+printf "\n%s\n%s\n\n" "$SMBMANAGER_TOOL $SMBMANAGER_VERSION" "`date`"
 __checkroot
 STATUS=$?
 if [ "$STATUS" -eq "$SUCCESS" ]; then
-	__smbmanager "$1" "$2"
+	__smbmanager $1 $2
 fi
 
 exit 127
-
