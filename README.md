@@ -21,7 +21,7 @@ DEPENDENCIES
 
 This tool requires these other modules and libraries:
 
-  	sh-util
+  	sh-util	https://github.com/vroncevic/sh-util
 
 COPYRIGHT AND LICENCE
 
