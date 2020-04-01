@@ -8,6 +8,9 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
+[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/issues)
+ [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/graphs/contributors)
+
 ### INSTALLATION
 
 Navigate to release [page](https://github.com/vroncevic/samba_manager/releases) download and extract release archive.
