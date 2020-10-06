@@ -35,12 +35,12 @@ SAMBA_MANAGER_LOG=${SAMBA_MANAGER_HOME}/log
 .    ${SAMBA_MANAGER_HOME}/bin/smb_version.sh
 .    ${SAMBA_MANAGER_HOME}/bin/smb_list.sh
 
-declare -A SAMBA_MANAGER_USAGE=(
-    [USAGE_TOOL]="${SAMBA_MANAGER_TOOL}"
-    [USAGE_ARG1]="[PR] smb | nmb | winbind | all"
-    [USAGE_ARG2]="[OP] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart smb service"
-    [USAGE_EX]="${SAMBA_MANAGER_TOOL} smb restart"
+declare -A SAMBA_MANAGER_Usage=(
+    [Usage_TOOL]="${SAMBA_MANAGER_TOOL}"
+    [Usage_ARG1]="[PR] smb | nmb | winbind | all"
+    [Usage_ARG2]="[OP] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart smb service"
+    [Usage_EX]="${SAMBA_MANAGER_TOOL} smb restart"
 )
 
 declare -A SAMBA_MANAGER_LOGGING=(
@@ -148,10 +148,10 @@ function __samba_manager {
             info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
             exit 0
         fi
-        usage SAMBA_MANAGER_USAGE
+        usage SAMBA_MANAGER_Usage
         exit 131
     fi
-    usage SAMBA_MANAGER_USAGE
+    usage SAMBA_MANAGER_Usage
     exit 128
 }
 

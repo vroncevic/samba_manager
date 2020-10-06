@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A WINBIND_OPERATION_USAGE=(
-    [USAGE_TOOL]="__winbind_operation"
-    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart winbind service"
-    [USAGE_EX]="__winbind_operation restart"
+declare -A WINBIND_OPERATION_Usage=(
+    [Usage_TOOL]="__winbind_operation"
+    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart winbind service"
+    [Usage_EX]="__winbind_operation restart"
 )
 
 #
@@ -46,7 +46,7 @@ function __winbind_operation {
         info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage WINBIND_OPERATION_USAGE
+    usage WINBIND_OPERATION_Usage
     return $NOT_SUCCESS
 }
 

@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A SMB_OPERATION_USAGE=(
-    [USAGE_TOOL]="__smb_operation"
-    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart smb service"
-    [USAGE_EX]="__smb_operation restart"
+declare -A SMB_OPERATION_Usage=(
+    [Usage_TOOL]="__smb_operation"
+    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart smb service"
+    [Usage_EX]="__smb_operation restart"
 )
 
 #
@@ -46,7 +46,7 @@ function __smb_operation {
         info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage SMB_OPERATION_USAGE
+    usage SMB_OPERATION_Usage
     return $NOT_SUCCESS
 }
 
