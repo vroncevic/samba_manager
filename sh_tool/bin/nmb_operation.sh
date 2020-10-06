@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A NMB_OPERATION_USAGE=(
-    [USAGE_TOOL]="__nmb_operation"
-    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [USAGE_EX_PRE]="# Restart nmb service"
-    [USAGE_EX]="__nmb_operation restart"
+declare -A NMB_OPERATION_Usage=(
+    [Usage_TOOL]="__nmb_operation"
+    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [Usage_EX_PRE]="# Restart nmb service"
+    [Usage_EX]="__nmb_operation restart"
 )
 
 #
@@ -46,7 +46,7 @@ function __nmb_operation {
         info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage NMB_OPERATION_USAGE
+    usage NMB_OPERATION_Usage
     return $NOT_SUCCESS
 }
 

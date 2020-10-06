@@ -1,17 +1,19 @@
-# Samba server management.
+# Samba server management
 
 **samba_manager** is shell tool for control/operating Samba Server.
 
-Developed in [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) code: **100%**.
+Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
+
+[![samba_manager shell checker](https://github.com/vroncevic/samba_manager/workflows/samba_manager%20shell%20checker/badge.svg)](https://github.com/vroncevic/samba_manager/actions?query=workflow%3A%22samba_manager+shell+checker%22)
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/issues)
- [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/graphs/contributors)
+[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/samba_manager.svg)](https://github.com/vroncevic/samba_manager/graphs/contributors)
 
-<!-- START doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [Installation](#installation)
@@ -19,12 +21,13 @@ other information that should be provided before the tool is installed.
 - [Dependencies](#dependencies)
 - [Shell tool structure](#shell-tool-structure)
 - [Docs](#docs)
-- [Copyright and Licence](#copyright-and-licence)
-<!-- END doctoc -->
+- [Copyright and licence](#copyright-and-licence)
 
-### INSTALLATION
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Navigate to release [page](https://github.com/vroncevic/samba_manager/releases) download and extract release archive.
+### Installation
+
+Navigate to release **[page](https://github.com/vroncevic/samba_manager/releases)** download and extract release archive.
 
 To install **samba_manager** type the following:
 
@@ -40,7 +43,9 @@ cp -R ~/sh_tool/log/   /root/scripts/samba_manager/ver.1.0/
 
 Or You can use docker to create image/container.
 
-### USAGE
+[![samba_manager docker checker](https://github.com/vroncevic/samba_manager/workflows/samba_manager%20docker%20checker/badge.svg)](https://github.com/vroncevic/samba_manager/actions?query=workflow%3A%22samba_manager+docker+checker%22)
+
+### Usage
 
 ```
 # Create symlink for shell tool
@@ -53,12 +58,12 @@ export PATH=${PATH}:/root/bin/
 samba_manager version
 ```
 
-### DEPENDENCIES
+### Dependencies
 
 **samba_manager** requires next modules and libraries:
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
-### SHELL TOOL STRUCTURE
+### Shell tool structure
 
 **samba_manager** is based on MOP.
 
@@ -80,7 +85,7 @@ Code structure:
     └── samba_manager.log
 ```
 
-### DOCS
+### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/samba_manager/badge/?version=latest)](https://samba_manager.readthedocs.io/projects/samba_manager/en/latest/?badge=latest)
 
@@ -88,13 +93,13 @@ More documentation and info at:
 * [https://samba_manager.readthedocs.io/en/latest/](https://samba_manager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 
-### COPYRIGHT AND LICENCE
+### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2015 by [vroncevic.github.io/samba_manager](https://vroncevic.github.io/samba_manager)
 
-This tool is free software; you can redistribute it and/or modify
+**samba_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.
 
