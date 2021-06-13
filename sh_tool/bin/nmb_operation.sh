@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 # @brief   Run operation with nmb service
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Jun 02 13:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A NMB_OPERATION_Usage=(
+declare -A NMB_OPERATION_USAGE=(
     [Usage_TOOL]="__nmb_operation"
     [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
     [Usage_EX_PRE]="# Restart nmb service"
@@ -46,7 +46,7 @@ function __nmb_operation {
         info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage NMB_OPERATION_Usage
+    usage NMB_OPERATION_USAGE
     return $NOT_SUCCESS
 }
 
