@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Samba Server Manager (wrapper)
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Jun 02 13:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
@@ -35,7 +35,7 @@ SAMBA_MANAGER_LOG=${SAMBA_MANAGER_HOME}/log
 .    ${SAMBA_MANAGER_HOME}/bin/smb_version.sh
 .    ${SAMBA_MANAGER_HOME}/bin/smb_list.sh
 
-declare -A SAMBA_MANAGER_Usage=(
+declare -A SAMBA_MANAGER_USAGE=(
     [Usage_TOOL]="${SAMBA_MANAGER_TOOL}"
     [Usage_ARG1]="[PR] smb | nmb | winbind | all"
     [Usage_ARG2]="[OP] start | stop | restart | status | version"
@@ -148,10 +148,10 @@ function __samba_manager {
             info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
             exit 0
         fi
-        usage SAMBA_MANAGER_Usage
+        usage SAMBA_MANAGER_USAGE
         exit 131
     fi
-    usage SAMBA_MANAGER_Usage
+    usage SAMBA_MANAGER_USAGE
     exit 128
 }
 

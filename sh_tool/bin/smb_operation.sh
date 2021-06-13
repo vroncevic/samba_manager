@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 # @brief   Run operation with smb service
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Jun 02 13:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A SMB_OPERATION_Usage=(
+declare -A SMB_OPERATION_USAGE=(
     [Usage_TOOL]="__smb_operation"
     [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
     [Usage_EX_PRE]="# Restart smb service"
@@ -46,7 +46,7 @@ function __smb_operation {
         info_debug_message_end "Done" "$FUNC" "$SAMBA_MANAGER_TOOL"
         return $SUCCESS
     fi
-    usage SMB_OPERATION_Usage
+    usage SMB_OPERATION_USAGE
     return $NOT_SUCCESS
 }
 
