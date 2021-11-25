@@ -29,9 +29,11 @@ other information that should be provided before the tool is installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/samba_manager/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/samba_manager/releases)** download and extract release archive.
 
-To install **samba_manager** type the following:
+To install **samba_manager** type the following
 
 ```
 tar xvzf samba_manager-x.y.tar.gz
@@ -41,7 +43,40 @@ cp -R ~/sh_tool/conf/  /root/scripts/samba_manager/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/samba_manager/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/samba_manager/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./samba_manager_setup.sh
+
+[setup] installing App/Tool/Script samba_manager
+	Thu 25 Nov 2021 08:49:54 PM CET
+[setup] clean up App/Tool/Script structure
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/samba_manager/ver.2.0/
+├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
+│   ├── nmb_operation.sh
+│   ├── samba_manager.sh
+│   ├── smb_info.sh
+│   ├── smb_list.sh
+│   ├── smb_operation.sh
+│   ├── smb_version.sh
+│   └── winbind_operation.sh
+├── conf/
+│   ├── samba_manager.cfg
+│   ├── samba_manager.logo
+│   └── samba_manager_util.cfg
+└── log/
+    └── samba_manager.log
+
+3 directories, 13 files
+lrwxrwxrwx 1 root root 56 Nov 25 20:49 /root/bin/samba_manager -> /root/scripts/samba_manager/ver.2.0/bin/samba_manager.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -56,23 +91,51 @@ ln -s /root/scripts/samba_manager/ver.x.y/bin/samba_manager.sh /root/bin/samba_m
 # Setting PATH
 export PATH=${PATH}:/root/bin/
 
-# Control/operating Samba Server
-samba_manager version
+# Available options
+samba_manager
+
+samba_manager ver.2.0
+Thu Nov 25 20:51:21 UTC 2021
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	                                                                               
+	                     _                                                         
+	 ___  __ _ _ __ ___ | |__   __ _   _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
+	/ __|/ _` | '_ ` _ \| '_ \ / _` | | '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
+	\__ \ (_| | | | | | | |_) | (_| | | | | | | | (_| | | | | (_| | (_| |  __/ |   
+	|___/\__,_|_| |_| |_|_.__/ \__,_| |_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
+	                                                               |___/           
+	                                                                               
+			Info   github.io/samba_manager ver.2.0 
+			Issue  github.io/issue
+			Author vroncevic.github.io
+
+  [USAGE] samba_manager [OPTIONS]
+  [OPTIONS]
+  [PR] smb | nmb | winbind | all
+  [OP] start | stop | restart | status | version
+  # Restart smb service
+  samba_manager smb restart
+  [help | h] print this option
 ```
 
 ### Dependencies
 
-**samba_manager** requires next modules and libraries:
+**samba_manager** requires next modules and libraries
 * samba_manager [https://github.com/vroncevic/samba_manager](https://github.com/vroncevic/samba_manager)
 
 ### Shell tool structure
 
 **samba_manager** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
 │   ├── nmb_operation.sh
 │   ├── samba_manager.sh
 │   ├── smb_info.sh
@@ -82,6 +145,7 @@ sh_tool/
 │   └── winbind_operation.sh
 ├── conf/
 │   ├── samba_manager.cfg
+│   ├── samba_manager.logo
 │   └── samba_manager_util.cfg
 └── log/
     └── samba_manager.log
@@ -91,7 +155,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/samba_manager/badge/?version=latest)](https://samba_manager.readthedocs.io/projects/samba_manager/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://samba_manager.readthedocs.io/en/latest/](https://samba_manager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 

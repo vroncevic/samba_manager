@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   List samba db
-# @version ver.1.0
-# @date    Mon Jun 02 13:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   Samba Server Manager
+# @version ver.2.0
+# @date    Thu 25 Nov 2021 08:28:58 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
 #
