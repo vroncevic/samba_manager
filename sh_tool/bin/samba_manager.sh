@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   Samba Server Manager (wrapper)
-# @version ver.1.0
-# @date    Mon Jun 02 13:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   Samba Server Manager
+# @version ver.2.0
+# @date    Thu 25 Nov 2021 08:28:58 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -22,13 +22,19 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 SAMBA_MANAGER_TOOL=samba_manager
-SAMBA_MANAGER_VERSION=ver.1.0
+SAMBA_MANAGER_VERSION=ver.2.0
 SAMBA_MANAGER_HOME=${UTIL_ROOT}/${SAMBA_MANAGER_TOOL}/${SAMBA_MANAGER_VERSION}
-SAMBA_MANAGER_CFG_DIR=SAMBA_MANAGER_CFG=${SAMBA_MANAGER_HOME}/conf
+SAMBA_MANAGER_CFG_DIR=${SAMBA_MANAGER_HOME}/conf
 SAMBA_MANAGER_CFG=${SAMBA_MANAGER_CFG_DIR}/${SAMBA_MANAGER_TOOL}.cfg
 SAMBA_MANAGER_UTIL_CFG=${SAMBA_MANAGER_CFG_DIR}/${SAMBA_MANAGER_TOOL}_util.cfg
+SAMBA_MANAGER_LOGO=${SAMBA_MANAGER_HOME}/conf/${SAMBA_MANAGER_TOOL}.logo
 SAMBA_MANAGER_LOG=${SAMBA_MANAGER_HOME}/log
 
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${SAMBA_MANAGER_HOME}/bin/center.sh
+.    ${SAMBA_MANAGER_HOME}/bin/display_logo.sh
 .    ${SAMBA_MANAGER_HOME}/bin/nmb_operation.sh
 .    ${SAMBA_MANAGER_HOME}/bin/smb_operation.sh
 .    ${SAMBA_MANAGER_HOME}/bin/winbind_operation.sh
@@ -36,11 +42,11 @@ SAMBA_MANAGER_LOG=${SAMBA_MANAGER_HOME}/log
 .    ${SAMBA_MANAGER_HOME}/bin/smb_list.sh
 
 declare -A SAMBA_MANAGER_USAGE=(
-    [Usage_TOOL]="${SAMBA_MANAGER_TOOL}"
-    [Usage_ARG1]="[PR] smb | nmb | winbind | all"
-    [Usage_ARG2]="[OP] start | stop | restart | status | version"
-    [Usage_EX_PRE]="# Restart smb service"
-    [Usage_EX]="${SAMBA_MANAGER_TOOL} smb restart"
+    [USAGE_TOOL]="${SAMBA_MANAGER_TOOL}"
+    [USAGE_ARG1]="[PR] smb | nmb | winbind | all"
+    [USAGE_ARG2]="[OP] start | stop | restart | status | version"
+    [USAGE_EX_PRE]="# Restart smb service"
+    [USAGE_EX]="${SAMBA_MANAGER_TOOL} smb restart"
 )
 
 declare -A SAMBA_MANAGER_LOGGING=(
@@ -77,6 +83,7 @@ TOOL_NOTIFY="false"
 #
 function __samba_manager {
     local PR=$1 OP=$2
+    display_logo
     if [[ -n "${PR}" && -n "${OP}" ]]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS

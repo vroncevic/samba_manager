@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/samba_manager/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/samba_manager/releases
 
-To install **samba_manager** type the following:
+To install **samba_manager** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**samba_manager** requires next modules and libraries:
+**samba_manager** requires next modules and libraries
 
 * sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
@@ -66,12 +71,14 @@ Shell tool structure
 
 **samba_manager** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
    sh_tool/
    ├── bin/
+   │   ├── center.sh
+   │   ├── display_logo.sh
    │   ├── nmb_operation.sh
    │   ├── samba_manager.sh
    │   ├── smb_info.sh
@@ -81,6 +88,7 @@ Code structure:
    │   └── winbind_operation.sh
    ├── conf/
    │   ├── samba_manager.cfg
+   │   ├── samba_manager.logo
    │   └── samba_manager_util.cfg
    └── log/
        └── samba_manager.log

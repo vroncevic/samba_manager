@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# @brief   Run operation with winbind service
-# @version ver.1.0
-# @date    Mon Jun 02 13:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   Samba Server Manager
+# @version ver.2.0
+# @date    Thu 25 Nov 2021 08:28:58 PM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
 declare -A WINBIND_OPERATION_USAGE=(
-    [Usage_TOOL]="__winbind_operation"
-    [Usage_ARG1]="[OPERATION] start | stop | restart | status | version"
-    [Usage_EX_PRE]="# Restart winbind service"
-    [Usage_EX]="__winbind_operation restart"
+    [USAGE_TOOL]="__winbind_operation"
+    [USAGE_ARG1]="[OPERATION] start | stop | restart | status | version"
+    [USAGE_EX_PRE]="# Restart winbind service"
+    [USAGE_EX]="__winbind_operation restart"
 )
 
 #
