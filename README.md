@@ -6,7 +6,7 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
-[![samba_manager shell checker](https://github.com/vroncevic/samba_manager/workflows/samba_manager%20shell%20checker/badge.svg)](https://github.com/vroncevic/samba_manager/actions?query=workflow%3A%22samba_manager+shell+checker%22)
+[![samba_manager_shell_checker](https://github.com/vroncevic/samba_manager/actions/workflows/samba_manager_shell_checker.yml/badge.svg)](https://github.com/vroncevic/samba_manager/actions/workflows/samba_manager_shell_checker.yml)
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -80,8 +80,6 @@ lrwxrwxrwx 1 root root 56 Nov 25 20:49 /root/bin/samba_manager -> /root/scripts/
 
 Or You can use docker to create image/container.
 
-[![samba_manager docker checker](https://github.com/vroncevic/samba_manager/workflows/samba_manager%20docker%20checker/badge.svg)](https://github.com/vroncevic/samba_manager/actions?query=workflow%3A%22samba_manager+docker+checker%22)
-
 ### Usage
 
 ```
@@ -100,13 +98,16 @@ Thu Nov 25 20:51:21 UTC 2021
 [check_root] Check permission for current session? [ok]
 [check_root] Done
 
-	                                                                               
-	                     _                                                         
-	 ___  __ _ _ __ ___ | |__   __ _   _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
-	/ __|/ _` | '_ ` _ \| '_ \ / _` | | '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
-	\__ \ (_| | | | | | | |_) | (_| | | | | | | | (_| | | | | (_| | (_| |  __/ |   
-	|___/\__,_|_| |_| |_|_.__/ \__,_| |_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
-	                                                               |___/           
+                                                                                                                          
+                                 ██                                                                                       
+                                ░██                                                                █████                  
+    ██████  ██████   ██████████ ░██       ██████         ██████████   ██████   ███████   ██████   ██░░░██  █████  ██████  
+   ██░░░░  ░░░░░░██ ░░██░░██░░██░██████  ░░░░░░██       ░░██░░██░░██ ░░░░░░██ ░░██░░░██ ░░░░░░██ ░██  ░██ ██░░░██░░██░░█  
+  ░░█████   ███████  ░██ ░██ ░██░██░░░██  ███████        ░██ ░██ ░██  ███████  ░██  ░██  ███████ ░░██████░███████ ░██ ░   
+   ░░░░░██ ██░░░░██  ░██ ░██ ░██░██  ░██ ██░░░░██        ░██ ░██ ░██ ██░░░░██  ░██  ░██ ██░░░░██  ░░░░░██░██░░░░  ░██     
+   ██████ ░░████████ ███ ░██ ░██░██████ ░░████████ █████ ███ ░██ ░██░░████████ ███  ░██░░████████  █████ ░░██████░███     
+  ░░░░░░   ░░░░░░░░ ░░░  ░░  ░░ ░░░░░    ░░░░░░░░ ░░░░░ ░░░  ░░  ░░  ░░░░░░░░ ░░░   ░░  ░░░░░░░░  ░░░░░   ░░░░░░ ░░░      
+                                                                                                                          
 	                                                                               
 			Info   github.io/samba_manager ver.2.0 
 			Issue  github.io/issue
@@ -153,17 +154,17 @@ sh_tool/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/samba_manager/badge/?version=latest)](https://samba_manager.readthedocs.io/projects/samba_manager/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/samba_manager/badge/?version=latest)](https://samba-manager.readthedocs.io/projects/samba_manager/en/latest/?badge=latest)
 
 More documentation and info at
-* [https://samba_manager.readthedocs.io/en/latest/](https://samba_manager.readthedocs.io/en/latest/)
+* [https://samba_manager.readthedocs.io/en/latest/](https://samba-manager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 
 ### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/samba_manager](https://vroncevic.github.io/samba_manager)
+Copyright (C) 2016-2024 by [vroncevic.github.io/samba_manager](https://vroncevic.github.io/samba_manager)
 
 **samba_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
