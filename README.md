@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/samba_manager/dev/docs/samba_manager_logo.png" width="25%">
-
 # Samba server management
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/samba_manager/dev/docs/samba_manager_logo.png" width="25%">
 
 **samba_manager** is shell tool for control/operating Samba Server.
 
@@ -35,7 +35,7 @@ Navigate to release **[page](https://github.com/vroncevic/samba_manager/releases
 
 To install **samba_manager** type the following
 
-```
+```bash
 tar xvzf samba_manager-x.y.tar.gz
 cd samba_manager-x.y
 cp -R ~/sh_tool/bin/   /root/scripts/samba_manager/ver.x.y/
@@ -44,7 +44,8 @@ cp -R ~/sh_tool/log/   /root/scripts/samba_manager/ver.x.y/
 ```
 
 Self generated setup script and execution
-```
+
+```bash
 ./samba_manager_setup.sh
 
 [setup] installing App/Tool/Script samba_manager
@@ -82,7 +83,7 @@ Or You can use docker to create image/container.
 
 ### Usage
 
-```
+```bash
 # Create symlink for shell tool
 ln -s /root/scripts/samba_manager/ver.x.y/bin/samba_manager.sh /root/bin/samba_manager
 
@@ -132,7 +133,8 @@ Thu Nov 25 20:51:21 UTC 2021
 **samba_manager** is based on MOP.
 
 Shell tool structure
-```
+
+```bash
 sh_tool/
 ├── bin/
 │   ├── center.sh
@@ -164,7 +166,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016-2024 by [vroncevic.github.io/samba_manager](https://vroncevic.github.io/samba_manager)
+Copyright (C) 2016 - 2024 by [vroncevic.github.io/samba_manager](https://vroncevic.github.io/samba_manager)
 
 **samba_manager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
