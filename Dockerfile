@@ -36,12 +36,12 @@ RUN rm -Rf v1.0.zip sh_util-1.0
 RUN mkdir /sh_tool/
 COPY sh_tool /sh_tool/
 RUN find /sh_tool/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN mkdir -p /root/scripts/samba_manager/ver.2.0/
+RUN mkdir -p /root/scripts/samba_manager/ver.3.0/
 RUN mkdir /root/bin/
-RUN cp -R /sh_tool/bin/   /root/scripts/samba_manager/ver.2.0/
-RUN cp -R /sh_tool/conf/  /root/scripts/samba_manager/ver.2.0/
-RUN cp -R /sh_tool/log/   /root/scripts/samba_manager/ver.2.0/
+RUN cp -R /sh_tool/bin/   /root/scripts/samba_manager/ver.3.0/
+RUN cp -R /sh_tool/conf/  /root/scripts/samba_manager/ver.3.0/
+RUN cp -R /sh_tool/log/   /root/scripts/samba_manager/ver.3.0/
 RUN rm -Rf /sh_tool/
-RUN chmod -R 755 /root/scripts/samba_manager/ver.2.0/
-RUN ln -s /root/scripts/samba_manager/ver.2.0/bin/samba_manager.sh /root/bin/samba_manager
-RUN tree /root/scripts/samba_manager/ver.2.0/
+RUN chmod -R 755 /root/scripts/samba_manager/ver.3.0/
+RUN ln -s /root/scripts/samba_manager/ver.3.0/bin/samba_manager.sh /root/bin/samba_manager
+RUN tree /root/scripts/samba_manager/ver.3.0/
