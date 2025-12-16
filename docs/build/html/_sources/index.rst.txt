@@ -46,11 +46,11 @@ To install **samba_manager** type the following
 
 .. code-block:: bash
 
-   tar xvzf samba_manager-x.y.tar.gz
-   cd samba_manager-x.y
-   cp -R ~/sh_tool/bin/   /root/scripts/samba_manager/ver.x.y/
-   cp -R ~/sh_tool/conf/  /root/scripts/samba_manager/ver.x.y/
-   cp -R ~/sh_tool/log/   /root/scripts/samba_manager/ver.x.y/
+   tar xvzf samba_manager-3.0.tar.gz
+   cd samba_manager-3.0
+   cp -R ~/sh_tool/bin/   /root/scripts/samba_manager/ver.3.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/samba_manager/ver.3.0/
+   cp -R ~/sh_tool/log/   /root/scripts/samba_manager/ver.3.0/
 
 Or You can use Docker to create image/container.
 
@@ -72,8 +72,6 @@ Shell tool structure
 
    sh_tool/
    ├── bin/
-   │   ├── center.sh
-   │   ├── display_logo.sh
    │   ├── nmb_operation.sh
    │   ├── samba_manager.sh
    │   ├── smb_info.sh
@@ -99,7 +97,7 @@ Copyright and licence
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2016-2024 by `vroncevic.github.io/samba_manager <https://vroncevic.github.io/samba_manager>`_
+Copyright (C) 2016 - 2026 by `vroncevic.github.io/samba_manager <https://vroncevic.github.io/samba_manager>`_
 
 **samba_manager** is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
